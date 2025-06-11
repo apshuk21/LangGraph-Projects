@@ -1,0 +1,10 @@
+pydantic
+python-dotenv
+langgraph
+langchain
+langchain-core
+langchain-community
+langchain-openai
+langchain-google-genai
+langchain-chroma>=0.1.2
+ipykernel
