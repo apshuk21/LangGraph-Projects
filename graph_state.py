@@ -8,9 +8,14 @@ from langchain_core.output_parsers import PydanticOutputParser # type: ignore
 class SupervisorOutputParser(BaseModel):
     node_selection_type: Literal['rag', 'llm', 'crawler']
 
+class ValidatorOutputParser(BaseModel):
+    next_node: Literal['END', 'Supervisor']
+
 parser = PydanticOutputParser(pydantic_object = SupervisorOutputParser)
+validation_parser = PydanticOutputParser(pydantic_object=ValidatorOutputParser)
 
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add]
 
 format_instructions = parser.get_format_instructions()
+validator_format_instructions = validation_parser.get_format_instructions()
